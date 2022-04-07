@@ -19,11 +19,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {\
         "name": "template",\
         "reference": "workspace:."\
+      },\
+      {\
+        "name": "@torinasakura/com-port-nodejs",\
+        "reference": "workspace:com-port/com-port"\
       }\
     ],\
     "enableTopLevelFallback": true,\
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
+      ["@torinasakura/com-port-nodejs", ["workspace:com-port/com-port"]],\
       ["template", ["workspace:."]]\
     ],\
     "fallbackPool": [\
@@ -1403,6 +1408,143 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@serialport/binding-mock", [\
+        ["npm:10.2.2", {\
+          "packageLocation": "./.yarn/cache/@serialport-binding-mock-npm-10.2.2-53721ff234-2f36d66e9f.zip/node_modules/@serialport/binding-mock/",\
+          "packageDependencies": [\
+            ["@serialport/binding-mock", "npm:10.2.2"],\
+            ["@serialport/bindings-interface", "npm:1.2.1"],\
+            ["debug", "virtual:62738e6f4a1bb4f8ff35ae41a77cb589aeffb1a2b896f237bc331b5509d0b413c328994ab1431dc8c128ffa7d6ca83d167ebf621c5c6b08297150420be31ce8e#npm:4.3.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/bindings-cpp", [\
+        ["npm:10.7.0", {\
+          "packageLocation": "./.yarn/unplugged/@serialport-bindings-cpp-npm-10.7.0-a0a57c9599/node_modules/@serialport/bindings-cpp/",\
+          "packageDependencies": [\
+            ["@serialport/bindings-cpp", "npm:10.7.0"],\
+            ["@serialport/bindings-interface", "npm:1.2.1"],\
+            ["@serialport/parser-readline", "npm:10.3.0"],\
+            ["debug", "virtual:62738e6f4a1bb4f8ff35ae41a77cb589aeffb1a2b896f237bc331b5509d0b413c328994ab1431dc8c128ffa7d6ca83d167ebf621c5c6b08297150420be31ce8e#npm:4.3.4"],\
+            ["node-addon-api", "npm:4.3.0"],\
+            ["node-gyp", "npm:9.0.0"],\
+            ["node-gyp-build", "npm:4.4.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/bindings-interface", [\
+        ["npm:1.2.1", {\
+          "packageLocation": "./.yarn/cache/@serialport-bindings-interface-npm-1.2.1-1a80df87c0-9d3b8231ec.zip/node_modules/@serialport/bindings-interface/",\
+          "packageDependencies": [\
+            ["@serialport/bindings-interface", "npm:1.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-byte-length", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-byte-length-npm-10.3.0-4e23b58d09-994339bff0.zip/node_modules/@serialport/parser-byte-length/",\
+          "packageDependencies": [\
+            ["@serialport/parser-byte-length", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-cctalk", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-cctalk-npm-10.3.0-2c2352f9f9-03ba2e4d65.zip/node_modules/@serialport/parser-cctalk/",\
+          "packageDependencies": [\
+            ["@serialport/parser-cctalk", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-delimiter", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-delimiter-npm-10.3.0-f78bb2845e-c662485ba0.zip/node_modules/@serialport/parser-delimiter/",\
+          "packageDependencies": [\
+            ["@serialport/parser-delimiter", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-inter-byte-timeout", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-inter-byte-timeout-npm-10.3.0-99ecf0ba04-0f50044f3e.zip/node_modules/@serialport/parser-inter-byte-timeout/",\
+          "packageDependencies": [\
+            ["@serialport/parser-inter-byte-timeout", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-packet-length", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-packet-length-npm-10.3.0-54d5b2c26f-cc375710ce.zip/node_modules/@serialport/parser-packet-length/",\
+          "packageDependencies": [\
+            ["@serialport/parser-packet-length", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-readline", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-readline-npm-10.3.0-ed0f5955d3-3ae9fac580.zip/node_modules/@serialport/parser-readline/",\
+          "packageDependencies": [\
+            ["@serialport/parser-readline", "npm:10.3.0"],\
+            ["@serialport/parser-delimiter", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-ready", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-ready-npm-10.3.0-7fd18a1bf4-3fb812781b.zip/node_modules/@serialport/parser-ready/",\
+          "packageDependencies": [\
+            ["@serialport/parser-ready", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-regex", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-regex-npm-10.3.0-9802363561-6a5a42ee53.zip/node_modules/@serialport/parser-regex/",\
+          "packageDependencies": [\
+            ["@serialport/parser-regex", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-slip-encoder", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-slip-encoder-npm-10.3.0-3f0bd0681a-27075f0ff5.zip/node_modules/@serialport/parser-slip-encoder/",\
+          "packageDependencies": [\
+            ["@serialport/parser-slip-encoder", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/parser-spacepacket", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-parser-spacepacket-npm-10.3.0-85c17172fc-47625ce9a7.zip/node_modules/@serialport/parser-spacepacket/",\
+          "packageDependencies": [\
+            ["@serialport/parser-spacepacket", "npm:10.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@serialport/stream", [\
+        ["npm:10.3.0", {\
+          "packageLocation": "./.yarn/cache/@serialport-stream-npm-10.3.0-b9398d8cf3-b6e21cab78.zip/node_modules/@serialport/stream/",\
+          "packageDependencies": [\
+            ["@serialport/stream", "npm:10.3.0"],\
+            ["@serialport/bindings-interface", "npm:1.2.1"],\
+            ["debug", "virtual:62738e6f4a1bb4f8ff35ae41a77cb589aeffb1a2b896f237bc331b5509d0b413c328994ab1431dc8c128ffa7d6ca83d167ebf621c5c6b08297150420be31ce8e#npm:4.3.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@sindresorhus/is", [\
         ["npm:4.6.0", {\
           "packageLocation": "./.yarn/cache/@sindresorhus-is-npm-4.6.0-7cad05c55e-83839f13da.zip/node_modules/@sindresorhus/is/",\
@@ -1456,6 +1598,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tootallnate/once", "npm:2.0.0"]\
           ],\
           "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@torinasakura/com-port-nodejs", [\
+        ["workspace:com-port/com-port", {\
+          "packageLocation": "./com-port/com-port/",\
+          "packageDependencies": [\
+            ["@torinasakura/com-port-nodejs", "workspace:com-port/com-port"],\
+            ["@serialport/parser-delimiter", "npm:10.3.0"],\
+            ["serialport", "npm:10.4.0"]\
+          ],\
+          "linkType": "SOFT"\
         }]\
       ]],\
       ["@types/babel__core", [\
@@ -6270,6 +6423,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["node-addon-api", [\
+        ["npm:4.3.0", {\
+          "packageLocation": "./.yarn/unplugged/node-addon-api-npm-4.3.0-a07a1232df/node_modules/node-addon-api/",\
+          "packageDependencies": [\
+            ["node-addon-api", "npm:4.3.0"],\
+            ["node-gyp", "npm:9.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["node-gyp", [\
         ["npm:9.0.0", {\
           "packageLocation": "./.yarn/unplugged/node-gyp-npm-9.0.0-0eccfca4d1/node_modules/node-gyp/",\
@@ -6285,6 +6448,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["semver", "npm:7.3.6"],\
             ["tar", "npm:6.1.11"],\
             ["which", "npm:2.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["node-gyp-build", [\
+        ["npm:4.4.0", {\
+          "packageLocation": "./.yarn/cache/node-gyp-build-npm-4.4.0-d95e1857d1-972a059f96.zip/node_modules/node-gyp-build/",\
+          "packageDependencies": [\
+            ["node-gyp-build", "npm:4.4.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7136,6 +7308,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["serialize-javascript", "npm:6.0.0"],\
             ["randombytes", "npm:2.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["serialport", [\
+        ["npm:10.4.0", {\
+          "packageLocation": "./.yarn/cache/serialport-npm-10.4.0-06bfc2aec8-343703dd0c.zip/node_modules/serialport/",\
+          "packageDependencies": [\
+            ["serialport", "npm:10.4.0"],\
+            ["@serialport/binding-mock", "npm:10.2.2"],\
+            ["@serialport/bindings-cpp", "npm:10.7.0"],\
+            ["@serialport/parser-byte-length", "npm:10.3.0"],\
+            ["@serialport/parser-cctalk", "npm:10.3.0"],\
+            ["@serialport/parser-delimiter", "npm:10.3.0"],\
+            ["@serialport/parser-inter-byte-timeout", "npm:10.3.0"],\
+            ["@serialport/parser-packet-length", "npm:10.3.0"],\
+            ["@serialport/parser-readline", "npm:10.3.0"],\
+            ["@serialport/parser-ready", "npm:10.3.0"],\
+            ["@serialport/parser-regex", "npm:10.3.0"],\
+            ["@serialport/parser-slip-encoder", "npm:10.3.0"],\
+            ["@serialport/parser-spacepacket", "npm:10.3.0"],\
+            ["@serialport/stream", "npm:10.3.0"],\
+            ["debug", "virtual:62738e6f4a1bb4f8ff35ae41a77cb589aeffb1a2b896f237bc331b5509d0b413c328994ab1431dc8c128ffa7d6ca83d167ebf621c5c6b08297150420be31ce8e#npm:4.3.4"]\
           ],\
           "linkType": "HARD"\
         }]\

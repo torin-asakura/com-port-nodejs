@@ -2,6 +2,9 @@
   "name": "template",
   "license": "BSD 3-Clause",
   "private": true,
+  "workspaces": [
+    "com-port/*"
+  ],
   "devDependencies": {
     "@atls/code-service": "^0.0.13",
     "@atls/config-jest": "^0.0.4",
