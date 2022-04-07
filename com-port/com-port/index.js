@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import SerialPort from 'serialport'
 import DelimiterParser from '@serialport/parser-delimiter'
 
