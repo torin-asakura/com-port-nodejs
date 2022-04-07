@@ -1,0 +1,14 @@
+{
+  "name": "@torinasakura/com-port-nodejs",
+  "version": "0.0.1",
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "@serialport/parser-delimiter": "^10.3.0",
+    "serialport": "^10.4.0"
+  }
+}
