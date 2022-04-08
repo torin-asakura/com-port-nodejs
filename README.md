@@ -1,4 +1,4 @@
-# Com-port gateway
+# COM port service
 
 **Run:** `yarn workspace @torinasakura/com-port-nodejs start`
 
@@ -13,3 +13,5 @@ JSON, example:
 `/weight` - get weight
 
 `/barcode` - get barcode
+
+# [From Scratch](https://github.com/torin-asakura/com-port-nodejs/blob/master/PURE_SETUP.md)
