@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  yarn:
+    image: node:16
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    entrypoint: yarn
+
+  com-port:
+    image: node:16
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    entrypoint: yarn workspace @torinasakura/com-port-nodejs start
+    ports:
+      - 3000:3000

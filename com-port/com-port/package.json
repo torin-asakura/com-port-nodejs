@@ -4,11 +4,12 @@
   "license": "BSD-3-Clause",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "",
   "dependencies": {
     "@serialport/parser-delimiter": "^10.3.0",
+    "fastify": "^3.28.0",
     "serialport": "^10.4.0"
   }
 }
