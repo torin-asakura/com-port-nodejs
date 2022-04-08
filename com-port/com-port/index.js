@@ -6,29 +6,17 @@ const fastify = require('fastify')
 
 const server = fastify({ logger: true })
 
-let ready = false
-let data
-
-const applyResult = (result) => {
-	data = result
-	ready = true
-}
-
-const reset = () => {
-	data = undefined
-	ready = false
-}
+const observers = []
 
 server.get('/weight', async (req, res) => {
 	requestWeight()
 
-	while(!ready) {
-		// do nothing
-	}
-
-	reset()
-
-	return { weight: data }
+	return new Promise(resolve => {
+		observers.push((value) =>  {
+			observers.pop()
+			resolve(value)
+		})
+	})
 })
 
 const port = new SerialPort({
@@ -74,7 +62,7 @@ parser.on('data', (data) => {
 
 	const { weight } = parseCmd(cmd, payload);
 
-	applyResult(weight)
+	observers.forEach(observer => observer(JSON.stringify({ weight })))
 });
 
 function parseCmd(cmd, payload) {
@@ -107,10 +95,9 @@ function requestWeight() {
 
 const start = async () => {
 	try {
-		await fastify.listen(3000)
+		await server.listen(3000)
 	} catch (err) {
 		console.log(err)
-		fastify.log.error(err)
 		process.exit(1)
 	}
 }
