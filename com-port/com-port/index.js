@@ -21,6 +21,17 @@ server.get('/weight', async (req, res) => {
   })
 })
 
+server.get('/barcode', async (req, res) => {
+	requestBarcode()
+
+	return new Promise((resolve) => {
+		observers.push((value) => {
+			observers.pop()
+			resolve(value)
+		})
+	})
+})
+
 const port = new SerialPort({
   path: 'COM1',
   baudRate: 9600,
@@ -64,9 +75,15 @@ parser.on('data', (data) => {
 
   console.log(`# Got cmd: ${cmd}`)
 
-  const { weight } = parseCmd(cmd, payload)
+  const { weight, barcode } = parseCmd(cmd, payload)
 
-  observers.forEach((observer) => observer(JSON.stringify({ weight })))
+	if (weight) {
+		observers.forEach((observer) => observer(JSON.stringify({ weight })))
+	}
+
+	if (barcode) {
+		observers.forEach((observer) => observer(JSON.stringify({ barcode })))
+	}
 })
 
 function parseCmd(cmd, payload) {
@@ -95,6 +112,15 @@ function requestWeight() {
     port.write(CMD_GETWEIGHT)
     port.write(Buffer.from([EOC, EOC]))
   }
+}
+
+function requestBarcode() {
+	if (port.isOpen) {
+		console.log(`# Requesting barcode`)
+
+		port.write(CMD_BARCODE)
+		port.write(Buffer.from([EOC, EOC]))
+	}
 }
 
 const start = async () => {
