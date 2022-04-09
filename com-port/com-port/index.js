@@ -10,11 +10,11 @@ const { requestHandler } = require('./request-handler')
 
 const server = fastify({ logger: true })
 
-const observer = { current: undefined }
+const observer = { current: undefined, type: '' }
 
-server.get('/weight', requestHandler(requestWeight, observer))
+server.get('/weight', requestHandler(requestWeight, observer, 'weight'))
 
-server.get('/barcode', requestHandler(requestBarcode, observer))
+server.get('/barcode', requestHandler(requestBarcode, observer, 'barcode'))
 
 const port = new SerialPort({
   path: 'COM6',
@@ -61,11 +61,11 @@ parser.on('data', (data) => {
 
   const { weight, barcode } = parseCmd(cmd, payload)
 
-  if (weight) {
+  if (weight && observer.type === 'weight') {
     observer.current(JSON.stringify({ weight }))
   }
 
-  if (barcode) {
+  if (barcode && observer.type === 'barcode') {
     let payload = JSON.stringify({ barcode }).replaceAll('\\u', '')
 
     if (payload.search(/0002/) !== 0 && payload.search(/0002/) !== -1) {
@@ -75,7 +75,7 @@ parser.on('data', (data) => {
     observer.current(payload)
   }
 
-  if (!weight && !barcode) {
+  if (!weight && !barcode && observer.current) {
     observer.current(JSON.stringify({ weight: 'unknown', barcode: 'unknown' }))
   }
 })
