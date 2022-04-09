@@ -6,34 +6,18 @@ const { SerialPort } = require('serialport')
 const { DelimiterParser } = require('@serialport/parser-delimiter')
 const fastify = require('fastify')
 
+const { requestHandler } = require('./request-handler')
+
 const server = fastify({ logger: true })
 
-const observers = []
+const observer = { current: undefined, type: '' }
 
-server.get('/weight', async (req, res) => {
-  requestWeight()
+server.get('/weight', requestHandler(requestWeight, observer, 'weight'))
 
-  return new Promise((resolve) => {
-    observers.push((value) => {
-      observers.pop()
-      resolve(value)
-    })
-  })
-})
-
-server.get('/barcode', async (req, res) => {
-  requestBarcode()
-
-  return new Promise((resolve) => {
-    observers.push((value) => {
-      observers.pop()
-      resolve(value)
-    })
-  })
-})
+server.get('/barcode', requestHandler(requestBarcode, observer, 'barcode'))
 
 const port = new SerialPort({
-  path: 'COM1',
+  path: 'COM6',
   baudRate: 9600,
   parity: 'none',
   dataBits: 8,
@@ -69,7 +53,7 @@ port.on('error', (e) => {
 parser.on('data', (data) => {
   console.log(`# Port data: ${data}`)
 
-  let cmd = data.toString('ascii', 0, 3)
+  let cmd = data.toString('ascii', 0, 4)
   let payload = Buffer.alloc(data.length - 3)
   data.copy(payload, 0, 3, data.length)
 
@@ -77,32 +61,52 @@ parser.on('data', (data) => {
 
   const { weight, barcode } = parseCmd(cmd, payload)
 
-  if (weight) {
-    observers.forEach((observer) => observer(JSON.stringify({ weight })))
+  if (weight && observer.type === 'weight') {
+    observer.current(JSON.stringify({ weight }))
   }
 
-  if (barcode) {
-    observers.forEach((observer) => observer(JSON.stringify({ barcode })))
+  if (barcode && observer.type === 'barcode') {
+    let payload = JSON.stringify({ barcode }).replaceAll('\\u', '')
+
+    if (payload.search(/0002/) !== 0 && payload.search(/0002/) !== -1) {
+      payload = payload.replace(/0002/, '')
+    }
+
+    observer.current(payload)
+  }
+
+  if (!weight && !barcode && observer.current) {
+    observer.current(JSON.stringify({ weight: 'unknown', barcode: 'unknown' }))
   }
 })
 
 function parseCmd(cmd, payload) {
-  switch (cmd) {
-    case CMD_WEIGHT:
-      let weight = parseInt(payload.toString('ascii'))
+  if (cmd.search(/S1/) !== -1 || cmd.search(/S11/) !== -1) {
+    let weight = parseInt(payload.toString('ascii'))
 
-      console.log(`# Weight value ${weight}`)
+    if (cmd.slice(1).replace(/S11/, '') === '') {
+      weight = `${weight}`.slice(1)
+    }
 
-      return { weight }
-    case CMD_BARCODE:
-      let barcode = payload.toString('ascii', 1)
+    console.log(`# Weight value ${weight}`)
 
-      console.log(`# Got barcode ${barcode}`)
-
-      return { barcode }
-    default:
-      return { weight: undefined, barcode: undefined }
+    return { weight }
   }
+
+  if (cmd.search(/S08/) !== -1 || cmd.search(/S8/) !== -1) {
+    let barcode = payload.toString('ascii', 1)
+    let index = cmd.search(/S08/)
+
+    if (index !== -1) {
+      barcode = `${cmd}${barcode}`.slice(index + 3)
+    }
+
+    console.log(`# Got barcode ${barcode}`)
+
+    return { barcode }
+  }
+
+  return { barcode: '', weight: '' }
 }
 
 function requestWeight() {
