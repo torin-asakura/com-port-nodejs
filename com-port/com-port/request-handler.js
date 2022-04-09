@@ -1,12 +1,13 @@
-const requestHandler = async (request, observers) => {
+const requestHandler = (request, observer) => async () => {
+  if (observer.current) observer.current(undefined)
+
+  const promise = new Promise((resolve) => {
+    observer.current = resolve
+  })
+
   request()
 
-  return new Promise((resolve) => {
-    observers.push((value) => {
-      observers.pop()
-      resolve(value)
-    })
-  })
+  return promise
 }
 
 module.exports = { requestHandler }
