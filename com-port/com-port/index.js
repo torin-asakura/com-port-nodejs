@@ -6,31 +6,15 @@ const { SerialPort } = require('serialport')
 const { DelimiterParser } = require('@serialport/parser-delimiter')
 const fastify = require('fastify')
 
+const { requestHandler } = require('./request-handler')
+
 const server = fastify({ logger: true })
 
 const observers = []
 
-server.get('/weight', async (req, res) => {
-  requestWeight()
+server.get('/weight', requestHandler(requestWeight, observers))
 
-  return new Promise((resolve) => {
-    observers.push((value) => {
-      observers.pop()
-      resolve(value)
-    })
-  })
-})
-
-server.get('/barcode', async (req, res) => {
-  requestBarcode()
-
-  return new Promise((resolve) => {
-    observers.push((value) => {
-      observers.pop()
-      resolve(value)
-    })
-  })
-})
+server.get('/barcode', requestHandler(requestBarcode, observers))
 
 const port = new SerialPort({
   path: 'COM1',
