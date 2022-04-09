@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 const requestHandler = (request, observer, requestType) => async () => {
   if (observer.current) observer.current(undefined)
 

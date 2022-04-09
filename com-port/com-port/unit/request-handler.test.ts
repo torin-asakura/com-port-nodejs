@@ -1,8 +1,12 @@
 const { requestHandler } = require('../request-handler')
 
 describe('suit for com-port-nodejs', () => {
+  const doNothing = (...args) => {
+    // do nothing
+  }
+
   it('should handle request correctly', async () => {
-    const observer = { current: (data) => {} }
+    const observer = { current: doNothing }
     const requestedData = 'Requested data'
 
     const onData = (data) => {
@@ -24,7 +28,7 @@ describe('suit for com-port-nodejs', () => {
   })
 
   it('should handle multiple requests sync', async () => {
-    const observer = { current: (data) => {} }
+    const observer = { current: doNothing }
     const requestedData1 = 'Requested data 1'
     const requestedData2 = 'Requested data 2'
     const requestedData3 = 'Requested data 3'
@@ -66,7 +70,7 @@ describe('suit for com-port-nodejs', () => {
   })
 
   it('should handle multiple requests at a time', async () => {
-    const observer = { current: (data) => {} }
+    const observer = { current: doNothing }
     const requestedData = 'Requested data'
 
     const onData = (data) => {
