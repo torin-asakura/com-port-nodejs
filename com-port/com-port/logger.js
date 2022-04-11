@@ -7,6 +7,7 @@ const createLogger = () => {
   const stream = createWriteStream()
 
   const write = (payload) => {
+    console.log(payload)
     stream.write(`${time}: ${payload}`)
   }
 
