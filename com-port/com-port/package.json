@@ -10,6 +10,7 @@
   "dependencies": {
     "@serialport/parser-delimiter": "^10.3.0",
     "fastify": "^3.28.0",
+    "node-windows": "^1.0.0-beta.7",
     "serialport": "^10.4.0"
   }
 }

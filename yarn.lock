@@ -139,6 +139,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@author.io/arg@npm:1.3.22":
+  version: 1.3.22
+  resolution: "@author.io/arg@npm:1.3.22"
+  checksum: 21d7f7a6f4fed9b25f17ff8b882245a57fd21b2ea6e1fd4b5111f4e00d2b97a51141fc55771935aca5679776bfd9a67a8b56d82aacc52d6a17524a841095548f
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.12.13, @babel/code-frame@npm:^7.16.7":
   version: 7.16.7
   resolution: "@babel/code-frame@npm:7.16.7"
@@ -1093,6 +1100,7 @@ __metadata:
   dependencies:
     "@serialport/parser-delimiter": ^10.3.0
     fastify: ^3.28.0
+    node-windows: ^1.0.0-beta.7
     serialport: ^10.4.0
   languageName: unknown
   linkType: soft
@@ -5263,6 +5271,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-windows@npm:^1.0.0-beta.7":
+  version: 1.0.0-beta.7
+  resolution: "node-windows@npm:1.0.0-beta.7"
+  dependencies:
+    "@author.io/arg": 1.3.22
+    xml: 1.0.1
+  checksum: ee0c4a813a3e0669319f373461771fd340fd04fcb941f48990117cc13cf231929e83e3fa77d0e82a9dd0a1da0b12ba293e661f441580de484ba2771b8a590b9a
+  languageName: node
+  linkType: hard
+
 "node.extend@npm:^2.0.0":
   version: 2.0.2
   resolution: "node.extend@npm:2.0.2"
@@ -7051,6 +7069,13 @@ __metadata:
   version: 3.0.0
   resolution: "xml-name-validator@npm:3.0.0"
   checksum: b3ac459afed783c285bb98e4960bd1f3ba12754fd4f2320efa0f9181ca28928c53cc75ca660d15d205e81f92304419afe94c531c7cfb3e0649aa6d140d53ecb0
+  languageName: node
+  linkType: hard
+
+"xml@npm:1.0.1":
+  version: 1.0.1
+  resolution: "xml@npm:1.0.1"
+  checksum: 11b5545ef3f8fec3fa29ce251f50ad7b6c97c103ed4d851306ec23366f5fa4699dd6a942262df52313a0cd1840ab26256da253c023bad3309d8ce46fe6020ca0
   languageName: node
   linkType: hard
 

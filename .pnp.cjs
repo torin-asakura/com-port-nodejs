@@ -205,6 +205,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@author.io/arg", [\
+        ["npm:1.3.22", {\
+          "packageLocation": "./.yarn/cache/@author.io-arg-npm-1.3.22-f8430bb3d4-21d7f7a6f4.zip/node_modules/@author.io/arg/",\
+          "packageDependencies": [\
+            ["@author.io/arg", "npm:1.3.22"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@babel/code-frame", [\
         ["npm:7.16.7", {\
           "packageLocation": "./.yarn/cache/@babel-code-frame-npm-7.16.7-093eb9e124-db2f7faa31.zip/node_modules/@babel/code-frame/",\
@@ -1619,6 +1628,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@torinasakura/com-port-nodejs", "workspace:com-port/com-port"],\
             ["@serialport/parser-delimiter", "npm:10.3.0"],\
             ["fastify", "npm:3.28.0"],\
+            ["node-windows", "npm:1.0.0-beta.7"],\
             ["serialport", "npm:10.4.0"]\
           ],\
           "linkType": "SOFT"\
@@ -6696,6 +6706,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["node-windows", [\
+        ["npm:1.0.0-beta.7", {\
+          "packageLocation": "./.yarn/unplugged/node-windows-npm-1.0.0-beta.7-ab4afc9129/node_modules/node-windows/",\
+          "packageDependencies": [\
+            ["node-windows", "npm:1.0.0-beta.7"],\
+            ["@author.io/arg", "npm:1.3.22"],\
+            ["xml", "npm:1.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["node.extend", [\
         ["npm:2.0.2", {\
           "packageLocation": "./.yarn/cache/node.extend-npm-2.0.2-91a85f1c30-1fe3a1ca7f.zip/node_modules/node.extend/",\
@@ -8774,6 +8795,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/utf-8-validate",\
             "bufferutil",\
             "utf-8-validate"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["xml", [\
+        ["npm:1.0.1", {\
+          "packageLocation": "./.yarn/cache/xml-npm-1.0.1-f50a7aeb8e-11b5545ef3.zip/node_modules/xml/",\
+          "packageDependencies": [\
+            ["xml", "npm:1.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
