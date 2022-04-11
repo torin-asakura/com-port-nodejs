@@ -7,8 +7,10 @@ const { DelimiterParser } = require('@serialport/parser-delimiter')
 const fastify = require('fastify')
 
 const { requestHandler } = require('./request-handler')
+const { createLogger } = require('./logger')
 
 const server = fastify({ logger: true })
+const { write } = createLogger()
 
 const observer = { current: undefined, type: '' }
 
@@ -40,24 +42,24 @@ const parser = port.pipe(
 
 port.open((e) => {
   if (e) {
-    return console.log(`% Port open error ${e}`)
+    return write(`% Port open error ${e}`)
   }
 
-  console.log(`# Port opened OK`)
+  write(`# Port opened OK`)
 })
 
 port.on('error', (e) => {
-  console.log(`% Port error: ${e}`)
+  write(`% Port error: ${e}`)
 })
 
 parser.on('data', (data) => {
-  console.log(`# Port data: ${data}`)
+  write(`# Port data: ${data}`)
 
   let cmd = data.toString('ascii', 0, 4)
   let payload = Buffer.alloc(data.length - 3)
   data.copy(payload, 0, 3, data.length)
 
-  console.log(`# Got cmd: ${cmd}`)
+  write(`# Got cmd: ${cmd}`)
 
   const { weight, barcode } = parseCmd(cmd, payload)
 
@@ -88,7 +90,7 @@ function parseCmd(cmd, payload) {
       weight = `${weight}`.slice(1)
     }
 
-    console.log(`# Weight value ${weight}`)
+    write(`# Weight value ${weight}`)
 
     return { weight }
   }
@@ -101,7 +103,7 @@ function parseCmd(cmd, payload) {
       barcode = `${cmd}${barcode}`.slice(index + 3)
     }
 
-    console.log(`# Got barcode ${barcode}`)
+    write(`# Got barcode ${barcode}`)
 
     return { barcode }
   }
@@ -111,7 +113,7 @@ function parseCmd(cmd, payload) {
 
 function requestWeight() {
   if (port.isOpen) {
-    console.log(`# Requesting weight`)
+    write(`# Requesting weight`)
 
     port.write(CMD_GETWEIGHT)
     port.write(Buffer.from([EOC, EOC]))
@@ -120,7 +122,7 @@ function requestWeight() {
 
 function requestBarcode() {
   if (port.isOpen) {
-    console.log(`# Requesting barcode`)
+    write(`# Requesting barcode`)
 
     port.write(CMD_BARCODE)
     port.write(Buffer.from([EOC, EOC]))
@@ -131,7 +133,7 @@ const start = async () => {
   try {
     await server.listen(3000)
   } catch (err) {
-    console.log(err)
+    write(err)
     process.exit(1)
   }
 }
