@@ -5,6 +5,7 @@
 const { SerialPort } = require('serialport')
 const { DelimiterParser } = require('@serialport/parser-delimiter')
 const fastify = require('fastify')
+const cors = require('fastify-cors')
 
 const { requestHandler } = require('./request-handler')
 const { createLogger } = require('./logger')
@@ -17,6 +18,8 @@ const doNothing = (...args) => {
 }
 
 const observers = { weight: doNothing, barcode: doNothing }
+
+server.register(cors)
 
 server.get('/weight', requestHandler(requestWeight, observers, 'weight'))
 
