@@ -5,6 +5,7 @@
 const { SerialPort } = require('serialport')
 const { DelimiterParser } = require('@serialport/parser-delimiter')
 const fastify = require('fastify')
+const cors = require('fastify-cors')
 
 const { requestHandler } = require('./request-handler')
 const { createLogger } = require('./logger')
@@ -12,11 +13,17 @@ const { createLogger } = require('./logger')
 const server = fastify({ logger: true })
 const { write } = createLogger()
 
-const observer = { current: undefined, type: '' }
+const doNothing = (...args) => {
+  // do nothing
+}
 
-server.get('/weight', requestHandler(requestWeight, observer, 'weight'))
+const observers = { weight: doNothing, barcode: doNothing }
 
-server.get('/barcode', requestHandler(requestBarcode, observer, 'barcode'))
+server.register(cors)
+
+server.get('/weight', requestHandler(requestWeight, observers, 'weight'))
+
+server.get('/barcode', requestHandler(requestBarcode, observers, 'barcode'))
 
 const port = new SerialPort({
   path: 'COM6',
@@ -63,22 +70,18 @@ parser.on('data', (data) => {
 
   const { weight, barcode } = parseCmd(cmd, payload)
 
-  if (weight && observer.type === 'weight') {
-    observer.current(JSON.stringify({ weight }))
+  if (weight && observers.weight) {
+    observers.weight(JSON.stringify({ weight }))
   }
 
-  if (barcode && observer.type === 'barcode') {
+  if (barcode && observers.barcode) {
     let payload = JSON.stringify({ barcode }).replaceAll('\\u', '')
 
     if (payload.search(/0002/) !== 0 && payload.search(/0002/) !== -1) {
       payload = payload.replace(/0002/, '')
     }
 
-    observer.current(payload)
-  }
-
-  if (!weight && !barcode && observer.current) {
-    observer.current(JSON.stringify({ weight: 'unknown', barcode: 'unknown' }))
+    observers.barcode(payload)
   }
 })
 

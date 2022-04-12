@@ -6,59 +6,59 @@ describe('suit for com-port-nodejs', () => {
   }
 
   it('should handle request correctly', async () => {
-    const observer = { current: doNothing }
+    const observer = { weight: doNothing }
     const requestedData = 'Requested data'
 
-    const onData = (data) => {
-      if (observer.current) {
-        observer.current(data)
+    const onWeight = (data) => {
+      if (observer.weight) {
+        observer.weight(data)
       }
     }
 
     const requestSomething = () => {
       setTimeout(() => {
-        onData(requestedData)
+        onWeight(requestedData)
       }, 1000)
     }
 
-    const request = requestHandler(requestSomething, observer)
+    const request = requestHandler(requestSomething, observer, 'weight')
     const result = await request()
 
     expect(result).toBe(requestedData)
   })
 
   it('should handle multiple requests sync', async () => {
-    const observer = { current: doNothing }
+    const observer = { weight: doNothing }
     const requestedData1 = 'Requested data 1'
     const requestedData2 = 'Requested data 2'
     const requestedData3 = 'Requested data 3'
 
-    const onData = (data) => {
-      if (observer.current) {
-        observer.current(data)
+    const onWeight = (data) => {
+      if (observer.weight) {
+        observer.weight(data)
       }
     }
 
     function* requestGenerator() {
       yield () =>
         setTimeout(() => {
-          onData(requestedData1)
+          onWeight(requestedData1)
         }, 1000)
       yield () =>
         setTimeout(() => {
-          onData(requestedData2)
+          onWeight(requestedData2)
         }, 1000)
       yield () =>
         setTimeout(() => {
-          onData(requestedData3)
+          onWeight(requestedData3)
         }, 1000)
     }
 
     const requestSomething = requestGenerator()
 
-    const request1 = requestHandler(requestSomething.next().value, observer)
-    const request2 = requestHandler(requestSomething.next().value, observer)
-    const request3 = requestHandler(requestSomething.next().value, observer)
+    const request1 = requestHandler(requestSomething.next().value, observer, 'weight')
+    const request2 = requestHandler(requestSomething.next().value, observer, 'weight')
+    const request3 = requestHandler(requestSomething.next().value, observer, 'weight')
 
     const result1 = await request1()
     const result2 = await request2()
@@ -70,21 +70,50 @@ describe('suit for com-port-nodejs', () => {
   })
 
   it('should handle multiple requests at a time', async () => {
-    const observer = { current: doNothing }
-    const requestedData = 'Requested data'
+    const observers = {
+      weight: doNothing,
+      barcode: doNothing,
+    }
+    const requestedWeight = '100'
+    const requestedBarcode = '123345'
 
-    const onData = (data) => {
-      if (observer.current) {
-        observer.current(data)
+    const onWeight = (data) => {
+      if (observers.weight) {
+        observers.weight(data)
+      }
+    }
+    const onBarcode = (data) => {
+      if (observers.barcode) {
+        observers.barcode(data)
       }
     }
 
-    requestHandler(() => onData('Should fail'), observer)()
-    requestHandler(() => onData('Should fail'), observer)()
+    const requestWeight = requestHandler(
+      () => {
+        setTimeout(() => {
+          onWeight(requestedWeight)
+        }, 1000)
+      },
+      observers,
+      'weight'
+    )
+    const requestBarcode = requestHandler(
+      () => {
+        setTimeout(() => {
+          onBarcode(requestedBarcode)
+        }, 1000)
+      },
+      observers,
+      'barcode'
+    )
 
-    const request = requestHandler(() => onData(requestedData), observer)
-    const result = await request()
+    const weightPromise = requestWeight()
+    const barcodePromise = requestBarcode()
 
-    expect(result).toBe(requestedData)
+    const weight = await weightPromise
+    const barcode = await barcodePromise
+
+    expect(weight).toBe(requestedWeight)
+    expect(barcode).toBe(requestedBarcode)
   })
 })

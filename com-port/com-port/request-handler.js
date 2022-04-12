@@ -1,12 +1,8 @@
 /* eslint-disable no-param-reassign */
 
-const requestHandler = (request, observer, requestType) => async () => {
-  if (observer.current) observer.current(undefined)
-
-  observer.type = requestType
-
+const requestHandler = (request, observers, requestType) => async () => {
   const promise = new Promise((resolve) => {
-    observer.current = resolve
+    observers[requestType] = resolve
   })
 
   request()

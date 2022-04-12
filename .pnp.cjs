@@ -205,6 +205,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@author.io/arg", [\
+        ["npm:1.3.22", {\
+          "packageLocation": "./.yarn/cache/@author.io-arg-npm-1.3.22-f8430bb3d4-21d7f7a6f4.zip/node_modules/@author.io/arg/",\
+          "packageDependencies": [\
+            ["@author.io/arg", "npm:1.3.22"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@babel/code-frame", [\
         ["npm:7.16.7", {\
           "packageLocation": "./.yarn/cache/@babel-code-frame-npm-7.16.7-093eb9e124-db2f7faa31.zip/node_modules/@babel/code-frame/",\
@@ -1619,6 +1628,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@torinasakura/com-port-nodejs", "workspace:com-port/com-port"],\
             ["@serialport/parser-delimiter", "npm:10.3.0"],\
             ["fastify", "npm:3.28.0"],\
+            ["fastify-cors", "npm:6.0.3"],\
+            ["node-windows", "npm:1.0.0-beta.7"],\
             ["serialport", "npm:10.4.0"]\
           ],\
           "linkType": "SOFT"\
@@ -4594,11 +4605,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["fastify-cors", [\
+        ["npm:6.0.3", {\
+          "packageLocation": "./.yarn/cache/fastify-cors-npm-6.0.3-006af662e1-054cf4e1cf.zip/node_modules/fastify-cors/",\
+          "packageDependencies": [\
+            ["fastify-cors", "npm:6.0.3"],\
+            ["fastify-plugin", "npm:3.0.1"],\
+            ["vary", "npm:1.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["fastify-error", [\
         ["npm:0.3.1", {\
           "packageLocation": "./.yarn/cache/fastify-error-npm-0.3.1-9c1ef70a86-fd6a0f6f87.zip/node_modules/fastify-error/",\
           "packageDependencies": [\
             ["fastify-error", "npm:0.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["fastify-plugin", [\
+        ["npm:3.0.1", {\
+          "packageLocation": "./.yarn/cache/fastify-plugin-npm-3.0.1-30a545741d-131ba0a388.zip/node_modules/fastify-plugin/",\
+          "packageDependencies": [\
+            ["fastify-plugin", "npm:3.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6696,6 +6727,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["node-windows", [\
+        ["npm:1.0.0-beta.7", {\
+          "packageLocation": "./.yarn/unplugged/node-windows-npm-1.0.0-beta.7-ab4afc9129/node_modules/node-windows/",\
+          "packageDependencies": [\
+            ["node-windows", "npm:1.0.0-beta.7"],\
+            ["@author.io/arg", "npm:1.3.22"],\
+            ["xml", "npm:1.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["node.extend", [\
         ["npm:2.0.2", {\
           "packageLocation": "./.yarn/cache/node.extend-npm-2.0.2-91a85f1c30-1fe3a1ca7f.zip/node_modules/node.extend/",\
@@ -8537,6 +8579,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["vary", [\
+        ["npm:1.1.2", {\
+          "packageLocation": "./.yarn/cache/vary-npm-1.1.2-b49f70ae63-ae0123222c.zip/node_modules/vary/",\
+          "packageDependencies": [\
+            ["vary", "npm:1.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["w3c-hr-time", [\
         ["npm:1.0.2", {\
           "packageLocation": "./.yarn/cache/w3c-hr-time-npm-1.0.2-87f88e51d9-ec3c2dacbf.zip/node_modules/w3c-hr-time/",\
@@ -8774,6 +8825,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/utf-8-validate",\
             "bufferutil",\
             "utf-8-validate"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["xml", [\
+        ["npm:1.0.1", {\
+          "packageLocation": "./.yarn/cache/xml-npm-1.0.1-f50a7aeb8e-11b5545ef3.zip/node_modules/xml/",\
+          "packageDependencies": [\
+            ["xml", "npm:1.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
